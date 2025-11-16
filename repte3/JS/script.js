@@ -1,5 +1,5 @@
-// Repte 3 - script.js
-// Cada `Comanda` representa un producte i conté:
+
+// Cada Comanda representa un producte i conté:
 // nomProducte, preuUnitat, unitats, baseImposable i preuTotal
 
 const TIPUS_IVA = 21; // percentatge d'IVA
@@ -35,4 +35,3 @@ comandes.forEach((c, i) => {
 });
 
 console.log('Array de comandes:', comandes);
-console.log('--- Repte 3: Finalitzat ---');

@@ -1,8 +1,3 @@
-// Repte 4 - script.js
-// Adaptat per treballar amb l'enunciat on cada `Comanda` és un objecte per producte.
-// El script utilitza l'array `comandes` si ja existeix (p. ex. carregat des de repte3),
-// o crea comandes de mostra com a fallback. Afegeix un `tfoot` amb totals.
-
 const TIPUS_IVA = 21;
 
 function formatEuro(v) {
@@ -22,7 +17,7 @@ function crearComanda(nomProducte, preuUnitat, unitats) {
   };
 }
 
-// Si hi ha un array `comandes` global (per exemple creat a repte3), l'utilitzem.
+// Si hi ha un array comandes global (per exemple creat a repte3), l'utilitzem.
 // En cas contrari, creem un array de mostra.
 const sourceComandes = (typeof comandes !== 'undefined' && Array.isArray(comandes))
   ? comandes
@@ -47,11 +42,25 @@ if (!existingTbody) {
   sourceComandes.forEach(c => {
     const tr = document.createElement('tr');
 
-    const tdNom = document.createElement('td'); tdNom.textContent = c.nomProducte; tr.appendChild(tdNom);
-    const tdPreu = document.createElement('td'); tdPreu.textContent = c.preuUnitat.toFixed(2); tr.appendChild(tdPreu);
-    const tdUnitats = document.createElement('td'); tdUnitats.textContent = c.unitats; tr.appendChild(tdUnitats);
-    const tdBase = document.createElement('td'); tdBase.textContent = c.baseImposable.toFixed(2); tr.appendChild(tdBase);
-    const tdTotal = document.createElement('td'); tdTotal.textContent = c.preuTotal.toFixed(2); tr.appendChild(tdTotal);
+    const tdNom = document.createElement('td'); 
+    tdNom.textContent = c.nomProducte; 
+    tr.appendChild(tdNom);
+
+    const tdPreu = document.createElement('td'); 
+    tdPreu.textContent = c.preuUnitat.toFixed(2); 
+    tr.appendChild(tdPreu);
+
+    const tdUnitats = document.createElement('td'); 
+    tdUnitats.textContent = c.unitats; 
+    tr.appendChild(tdUnitats);
+
+    const tdBase = document.createElement('td'); 
+    tdBase.textContent = c.baseImposable.toFixed(2); 
+    tr.appendChild(tdBase);
+
+    const tdTotal = document.createElement('td'); 
+    tdTotal.textContent = c.preuTotal.toFixed(2); 
+    tr.appendChild(tdTotal);
 
     existingTbody.appendChild(tr);
 
@@ -63,15 +72,24 @@ if (!existingTbody) {
   const tfoot = document.querySelector('#orders-table tfoot') || document.createElement('tfoot');
   tfoot.innerHTML = '';
   const trFoot = document.createElement('tr');
-  const tdLabel = document.createElement('td'); tdLabel.setAttribute('colspan', '3'); tdLabel.style.textAlign = 'right'; tdLabel.textContent = 'Totals:'; trFoot.appendChild(tdLabel);
-  const tdSumBase = document.createElement('td'); tdSumBase.textContent = sumBase.toFixed(2); trFoot.appendChild(tdSumBase);
-  const tdSumTotal = document.createElement('td'); tdSumTotal.textContent = sumTotal.toFixed(2); trFoot.appendChild(tdSumTotal);
+
+  const tdLabel = document.createElement('td'); 
+  tdLabel.setAttribute('colspan', '3'); 
+  tdLabel.style.textAlign = 'right'; 
+  tdLabel.textContent = 'Totals:'; 
+  trFoot.appendChild(tdLabel);
+
+  const tdSumBase = document.createElement('td'); 
+  tdSumBase.textContent = sumBase.toFixed(2); 
+  trFoot.appendChild(tdSumBase);
+
+  const tdSumTotal = document.createElement('td'); 
+  tdSumTotal.textContent = sumTotal.toFixed(2); 
+  trFoot.appendChild(tdSumTotal);
   tfoot.appendChild(trFoot);
 
   // si no existeix tfoot al DOM, l'afegim
   if (!document.querySelector('#orders-table tfoot')) {
     document.querySelector('#orders-table').appendChild(tfoot);
   }
-
-  console.log('Repte 4: Taula omplerta amb comandes:', sourceComandes);
 }
