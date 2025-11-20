@@ -1,10 +1,9 @@
-
 // Cada Comanda representa un producte i conté:
 // nomProducte, preuUnitat, unitats, baseImposable i preuTotal
 
 const TIPUS_IVA = 21; // percentatge d'IVA
 
-// Fàbrica per crear una comanda (per un producte)
+// Funció per crear una comanda
 function crearComanda(nomProducte, preuUnitat, unitats) {
   const baseImposable = preuUnitat * unitats;
   const iva = (baseImposable * TIPUS_IVA) / 100;
@@ -25,7 +24,7 @@ const comanda3 = crearComanda('Mochila', 60, 2);
 
 const comandes = [comanda1, comanda2, comanda3];
 
-console.log('--- Repte 3: Comandes (objectes) ---');
+//Exemple de forEach
 comandes.forEach((c, i) => {
   console.log(`Comanda ${i + 1}: ${c.nomProducte}`);
   console.log(' - Preu unitari:', c.preuUnitat.toFixed(2) + ' €');
@@ -35,3 +34,25 @@ comandes.forEach((c, i) => {
 });
 
 console.log('Array de comandes:', comandes);
+
+
+const comanda4 = {
+  nomProducte: 'Portàtil',
+  preuUnitat: 1200,
+  unitats: 4,
+  baseImposable: this.preuUnitat * this.unitats,
+  preuTotal: this.baseImposable + (this.baseImposable * TIPUS_IVA) / 100
+}
+
+console.log('Comanda 4:', comanda4);
+
+//baseImposable i preuTotal surten com NaN perquè this no apunta a l'objecte comanda4
+//undefined * undefined = NaN (Not a Number)
+
+//1. Posibles solucions
+comanda4.baseImposable = comanda4.preuUnitat * comanda4.unitats;
+comanda4.preuTotal = comanda4.baseImposable + (comanda4.baseImposable * TIPUS_IVA) / 100;
+
+console.log('Comanda 4:', comanda4);
+
+//2. Crear una funció tal com teniu en aquest exemple
