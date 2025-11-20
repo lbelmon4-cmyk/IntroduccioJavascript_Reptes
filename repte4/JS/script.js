@@ -1,9 +1,5 @@
 const TIPUS_IVA = 21;
 
-function formatEuro(v) {
-  return v.toFixed(2) + ' €';
-}
-
 function crearComanda(nomProducte, preuUnitat, unitats) {
   const baseImposable = preuUnitat * unitats;
   const iva = (baseImposable * TIPUS_IVA) / 100;
@@ -27,9 +23,32 @@ const sourceComandes = (typeof comandes !== 'undefined' && Array.isArray(comande
       crearComanda('Mochila', 60, 2)
     ];
 
+/*
+Explicació d'aquest const sourceComandes:
+
+typeof comandes !== 'undefined' 
+- comprova si la variable comandes existeix
+
+Array.isArray(comandes)
+- comprova si comandes és un array
+
+? : 
+- això és un operador ternari que funciona com un if-else
+    Si la variable comandes existeix i és un array, s'assigna a sourceComandes.
+    Si no, s'assigna un array de mostra amb 3 comandes creades amb la funció crearComanda
+
+equivalent amb un if ... else
+
+if ( typeof comandes !== 'undefined' && Array.isArray(comandes) ) {
+  sourceComandes = comandes;
+} else {
+  sourceComandes = [ crearComanda(...), ... ];
+}    
+
+*/
+
 // Omplir la taula
-const tbody = document.querySelector('#orders-table tbody');
-const existingTbody = tbody;
+const existingTbody = document.querySelector('#orders-table tbody');
 if (!existingTbody) {
   console.error('No s\'ha trobat #orders-table tbody');
 } else {
